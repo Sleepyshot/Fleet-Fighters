@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2w7deiinhiw2"]
+
+[ext_resource type="Script" path="res://Scripts/Game/asteroid_spawner.gd" id="1_ipn3y"]
+
+[node name="AsteroidSpawner" type="Node2D"]
+position = Vector2(788, 16)
+script = ExtResource("1_ipn3y")

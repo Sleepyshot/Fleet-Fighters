@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxgutg43ch732"]
+
+[ext_resource type="Texture2D" uid="uid://blc8fhjf723nh" path="res://Assets/UI/Stars.png" id="1_uxcht"]
+[ext_resource type="Script" path="res://Scripts/AnimationScripts/starfield.gd" id="1_xgh4d"]
+
+[node name="Starfield" type="Node2D"]
+script = ExtResource("1_xgh4d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_uxcht")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(29.125, -11.5)
+scale = Vector2(49.5125, -48.45)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

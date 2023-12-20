@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b22xean8d8ftr"]
+
+[ext_resource type="Script" path="res://Scripts/Game/shooting_star_spawner.gd" id="1_oeuve"]
+
+[node name="ShootingStarSpawner" type="Node2D"]
+script = ExtResource("1_oeuve")

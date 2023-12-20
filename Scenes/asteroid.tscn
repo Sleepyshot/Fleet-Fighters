@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjoknkvr2cpi0"]
+
+[ext_resource type="Script" path="res://Scripts/Game/asteroid.gd" id="1_qoqll"]
+[ext_resource type="Texture2D" uid="uid://bq323q14nr577" path="res://Assets/Asteroid 01 - Base.png" id="2_yvv48"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kjisl"]
+radius = 31.0
+
+[node name="Asteroid" type="Node2D"]
+z_index = 1
+script = ExtResource("1_qoqll")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.750004, -1.112)
+scale = Vector2(1.90104, 1.49767)
+texture = ExtResource("2_yvv48")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_kjisl")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

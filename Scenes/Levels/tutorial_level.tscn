@@ -1,0 +1,150 @@
+[gd_scene load_steps=10 format=3 uid="uid://bl2gwxpmfr0ns"]
+
+[ext_resource type="PackedScene" uid="uid://bu8u55jruvkx" path="res://Scenes/player.tscn" id="1_epdwa"]
+[ext_resource type="Script" path="res://Scripts/Game/tutorial_level.gd" id="1_lg03w"]
+[ext_resource type="PackedScene" uid="uid://dpy2mtsso5rg4" path="res://Scenes/dialog_box.tscn" id="3_3jrgx"]
+[ext_resource type="Texture2D" uid="uid://c55vyugtvcc4h" path="res://Assets/UI/TutorialCustomDialogBox.png" id="4_m5rd7"]
+[ext_resource type="Texture2D" uid="uid://bjdjlusyjuf70" path="res://Assets/UI/pointer.png" id="5_jyulm"]
+
+[sub_resource type="Animation" id="Animation_vycy7"]
+resource_name = "fade_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_va4dy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bufr0"]
+resource_name = "fade_out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Transition/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c3x40"]
+_data = {
+"RESET": SubResource("Animation_va4dy"),
+"fade_in": SubResource("Animation_vycy7"),
+"fade_out": SubResource("Animation_bufr0")
+}
+
+[node name="TutorialLevel" type="Node2D"]
+script = ExtResource("1_lg03w")
+
+[node name="Player" parent="." instance=ExtResource("1_epdwa")]
+position = Vector2(947, 849)
+
+[node name="DialogBox" parent="." instance=ExtResource("3_3jrgx")]
+offset_left = 2211.0
+offset_top = 521.0
+offset_right = 2211.0
+offset_bottom = 521.0
+file_name = "Tutorial"
+
+[node name="DialogTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Transition" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c3x40")
+}
+
+[node name="ColorRect" type="ColorRect" parent="Transition"]
+visible = false
+offset_left = -18.0
+offset_top = -14.0
+offset_right = 1943.0
+offset_bottom = 1105.0
+color = Color(0, 0, 0, 1)
+
+[node name="TutControlsImage" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(869, 513)
+texture = ExtResource("4_m5rd7")
+
+[node name="Pointer" type="Sprite2D" parent="."]
+position = Vector2(1378, 877)
+rotation = -1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("5_jyulm")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="LevelTimer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[node name="EndDialog" parent="." instance=ExtResource("3_3jrgx")]
+visible = false
+offset_left = 2692.0
+offset_top = 518.0
+offset_right = 2692.0
+offset_bottom = 518.0
+file_name = "TutorialEnd"
+
+[node name="EndTutorialTimer" type="Timer" parent="."]
+wait_time = 8.0
+
+[connection signal="timeout" from="DialogTimer" to="." method="_on_dialog_timer_timeout"]
+[connection signal="animation_finished" from="Transition" to="." method="_on_transition_animation_finished"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]
+[connection signal="timeout" from="EndTutorialTimer" to="." method="_on_end_tutorial_timer_timeout"]

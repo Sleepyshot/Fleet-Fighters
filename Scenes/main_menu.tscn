@@ -1,0 +1,284 @@
+[gd_scene load_steps=13 format=3 uid="uid://bucdaq4t6f60m"]
+
+[ext_resource type="Script" path="res://Scripts/UI/main_menu.gd" id="1_2erfo"]
+[ext_resource type="Texture2D" uid="uid://7si3lf8hyium" path="res://Assets/UI/MenuPanel.png" id="2_ivqrn"]
+[ext_resource type="Texture2D" uid="uid://blc8fhjf723nh" path="res://Assets/UI/Stars.png" id="2_k4ys3"]
+[ext_resource type="Texture2D" uid="uid://d3r761tq1hshb" path="res://Assets/UI/SolidPanelMenu.png" id="3_8l0ox"]
+[ext_resource type="Texture2D" uid="uid://npyhvwy3qnqp" path="res://Assets/UI/Button.png" id="5_1hsy5"]
+[ext_resource type="Texture2D" uid="uid://bdjawwxn2pe1b" path="res://Assets/UI/ButtonHovered.png" id="6_defpo"]
+[ext_resource type="Texture2D" uid="uid://ctf3c1cqcstvs" path="res://icon.svg" id="7_vvlry"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w1x2x"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 540, 1)
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+
+[sub_resource type="Animation" id="Animation_xre3q"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_4033x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ngdg2"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_irbuc"]
+_data = {
+"RESET": SubResource("Animation_4033x"),
+"fade_in": SubResource("Animation_ngdg2"),
+"fade_out": SubResource("Animation_xre3q")
+}
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2erfo")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+offset_left = -16.0
+offset_top = -19.0
+offset_right = 1938.0
+offset_bottom = 1095.0
+color = Color(0, 0, 0, 1)
+
+[node name="stars" type="Sprite2D" parent="Background"]
+position = Vector2(512.5, 518)
+scale = Vector2(1.01855, 1.24023)
+texture = ExtResource("2_k4ys3")
+
+[node name="stars2" type="Sprite2D" parent="Background"]
+position = Vector2(1496.36, 568.679)
+scale = Vector2(-0.939554, 1.15168)
+texture = ExtResource("2_k4ys3")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Background"]
+position = Vector2(1920, 540)
+scale = Vector2(1.5, 1.5)
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_w1x2x")
+lifetime = 100.0
+preprocess = 600.0
+speed_scale = 0.25
+
+[node name="GlassPanel" type="Sprite2D" parent="."]
+position = Vector2(963.4, 569.9)
+scale = Vector2(0.7775, 0.801667)
+texture = ExtResource("2_ivqrn")
+
+[node name="SolidPanel" type="Sprite2D" parent="GlassPanel"]
+position = Vector2(5.14478, 1.52588e-05)
+scale = Vector2(0.358287, 0.636511)
+texture = ExtResource("3_8l0ox")
+
+[node name="Play" type="TextureButton" parent="."]
+offset_left = 864.4
+offset_top = 384.4
+offset_right = 1081.4
+offset_bottom = 441.4
+pivot_offset = Vector2(0.28, 0)
+texture_normal = ExtResource("5_1hsy5")
+texture_pressed = ExtResource("6_defpo")
+texture_hover = ExtResource("6_defpo")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Play"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -3.0
+offset_right = 219.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 35
+text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits" type="TextureButton" parent="."]
+offset_left = 864.4
+offset_top = 519.4
+offset_right = 1081.4
+offset_bottom = 576.4
+pivot_offset = Vector2(0.28, 0)
+texture_normal = ExtResource("5_1hsy5")
+texture_pressed = ExtResource("6_defpo")
+texture_hover = ExtResource("6_defpo")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Credits"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -3.0
+offset_right = 219.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 35
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exit" type="TextureButton" parent="."]
+offset_left = 865.4
+offset_top = 653.4
+offset_right = 1082.4
+offset_bottom = 710.4
+pivot_offset = Vector2(0.28, 0)
+texture_normal = ExtResource("5_1hsy5")
+texture_pressed = ExtResource("6_defpo")
+texture_hover = ExtResource("6_defpo")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Exit"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -3.0
+offset_right = 219.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 35
+text = "Exit Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GodotIcon" type="Sprite2D" parent="."]
+position = Vector2(72, 1027)
+scale = Vector2(0.5625, 0.476563)
+texture = ExtResource("7_vvlry")
+
+[node name="Label" type="Label" parent="GodotIcon"]
+offset_left = 81.7778
+offset_top = -25.1802
+offset_right = 558.778
+offset_bottom = 46.8198
+theme_override_font_sizes/font_size = 50
+text = "Powered by GODOT engine! "
+
+[node name="NameBoxes" type="Node2D" parent="."]
+visible = false
+
+[node name="Fleet" type="Sprite2D" parent="NameBoxes"]
+position = Vector2(360, 196)
+scale = Vector2(0.352558, 0.249679)
+texture = ExtResource("3_8l0ox")
+
+[node name="Fighters" type="Sprite2D" parent="NameBoxes"]
+position = Vector2(1562, 196)
+scale = Vector2(0.352558, 0.249679)
+texture = ExtResource("3_8l0ox")
+
+[node name="Label" type="Label" parent="NameBoxes"]
+offset_left = 145.0
+offset_top = 66.0
+offset_right = 589.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(0.364706, 0.631373, 0.647059, 1)
+theme_override_font_sizes/font_size = 100
+text = "Fleet
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="NameBoxes"]
+offset_left = 1345.0
+offset_top = 68.0
+offset_right = 1792.0
+offset_bottom = 297.0
+theme_override_colors/font_color = Color(0.364706, 0.631373, 0.647059, 1)
+theme_override_font_sizes/font_size = 100
+text = "Fighter
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_irbuc")
+}
+
+[node name="ColorRect" type="ColorRect" parent="AnimationPlayer"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -39.0
+offset_top = -40.0
+offset_right = 1958.0
+offset_bottom = 1104.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmfl7d0r4m3bk"]
+
+[ext_resource type="Script" path="res://Scripts/Game/level_1.gd" id="1_epavx"]
+[ext_resource type="PackedScene" uid="uid://d2w7deiinhiw2" path="res://Scenes/asteroid_spawner.tscn" id="3_n3pvo"]
+[ext_resource type="PackedScene" uid="uid://dhyipokj4nooc" path="res://Scenes/Enemies/enemy.tscn" id="4_i6bok"]
+[ext_resource type="PackedScene" uid="uid://bu8u55jruvkx" path="res://Scenes/player.tscn" id="4_oucem"]
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_epavx")
+
+[node name="AsteroidSpawner" parent="." instance=ExtResource("3_n3pvo")]
+
+[node name="Enemy" parent="." instance=ExtResource("4_i6bok")]
+position = Vector2(908, -83)
+
+[node name="Player" parent="." instance=ExtResource("4_oucem")]
+position = Vector2(952, 948)

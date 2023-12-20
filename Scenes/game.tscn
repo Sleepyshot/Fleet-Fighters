@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://c80e2bwvtkiri"]
+
+[ext_resource type="Script" path="res://Scripts/Game/game.gd" id="1_1bhb1"]
+[ext_resource type="PackedScene" uid="uid://16nuafg1m5sq" path="res://Scenes/pause_menu.tscn" id="2_0hetj"]
+[ext_resource type="Texture2D" uid="uid://blc8fhjf723nh" path="res://Assets/UI/Stars.png" id="2_hjawp"]
+[ext_resource type="PackedScene" uid="uid://bwxqkiox7q1u6" path="res://Scenes/hud.tscn" id="3_fails"]
+[ext_resource type="PackedScene" uid="uid://bl2gwxpmfr0ns" path="res://Scenes/Levels/tutorial_level.tscn" id="7_28mnl"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_13thi"]
+emission_shape = 3
+emission_box_extents = Vector3(0, 540, 0)
+particle_flag_disable_z = true
+spread = 10.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = -10.0
+initial_velocity_max = -10.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 2.0
+scale_max = 2.0
+hue_variation_min = 1.0
+hue_variation_max = 1.0
+
+[node name="Game" type="Node2D"]
+position = Vector2(3, 6)
+script = ExtResource("1_1bhb1")
+
+[node name="BackGround" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="BackGround"]
+offset_left = -14.0
+offset_top = -17.0
+offset_right = 1931.0
+offset_bottom = 1090.0
+color = Color(0, 0, 0, 1)
+
+[node name="Stars" type="Sprite2D" parent="BackGround"]
+position = Vector2(491, 565)
+scale = Vector2(0.962891, 1.19922)
+texture = ExtResource("2_hjawp")
+
+[node name="Stars2" type="Sprite2D" parent="BackGround"]
+position = Vector2(1431, 571)
+scale = Vector2(0.951172, 1.19531)
+texture = ExtResource("2_hjawp")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="BackGround"]
+position = Vector2(1919, 526)
+amount = 2000
+process_material = SubResource("ParticleProcessMaterial_13thi")
+lifetime = 1000.0
+preprocess = 300.0
+speed_scale = 0.75
+fixed_fps = 60
+
+[node name="HUD" parent="." instance=ExtResource("3_fails")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_0hetj")]
+visible = false
+
+[node name="EnergyTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="TutorialLevel" parent="." instance=ExtResource("7_28mnl")]
+
+[connection signal="timeout" from="EnergyTimer" to="." method="_on_energy_timer_timeout"]
