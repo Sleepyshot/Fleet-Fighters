@@ -11,9 +11,15 @@ config_version=5
 [application]
 
 config/name="Space Shooter"
-run/main_scene="res://Scenes/main_menu.tscn"
+run/main_scene="res://Scenes/UI/main_menu.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="FleetFighter"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://Scripts/global.gd"
 
 [display]
 

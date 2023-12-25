@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkxpt5lytio86"]
+
+[ext_resource type="Texture2D" uid="uid://npyhvwy3qnqp" path="res://Assets/UI/Button.png" id="1_2846v"]
+[ext_resource type="Script" path="res://Scripts/Store Items/energy_battery.gd" id="1_v1mak"]
+[ext_resource type="Texture2D" uid="uid://bdjawwxn2pe1b" path="res://Assets/UI/ButtonHovered.png" id="2_yh04w"]
+[ext_resource type="PackedScene" uid="uid://ck8r420delabm" path="res://Scenes/Animations/coin.tscn" id="3_gtnnx"]
+[ext_resource type="PackedScene" uid="uid://e3yl0t10qlw7" path="res://Scenes/UI/tool_tip.tscn" id="4_epw04"]
+[ext_resource type="Texture2D" uid="uid://djaa3g6hoplt8" path="res://Assets/UI/EnergyBattery.png" id="6_hw6ek"]
+
+[node name="EnergyBattery" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v1mak")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 212.0
+offset_bottom = 53.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("1_2846v")
+texture_pressed = ExtResource("1_2846v")
+texture_hover = ExtResource("2_yh04w")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="TextureButton"]
+layout_mode = 0
+offset_right = 209.0
+offset_bottom = 51.0
+text = "Buy Energy Battery"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Coin" parent="." instance=ExtResource("3_gtnnx")]
+position = Vector2(208, 12)
+scale = Vector2(0.5, 0.5)
+
+[node name="ToolTip" parent="." instance=ExtResource("4_epw04")]
+visible = false
+anchors_preset = 0
+offset_left = -150.0
+offset_top = 15.0
+offset_right = -150.0
+offset_bottom = 15.0
+grow_horizontal = 1
+grow_vertical = 1
+item_image = ExtResource("6_hw6ek")
+tip = "Energy Battery: This will increase your max energy for 30 seconds."
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

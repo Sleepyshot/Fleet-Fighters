@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var controls_image = preload("res://Assets/UI/TutorialCustomDialogBox.png")
 @onready var dialog_box = $DialogBox
-const spawner_scene = preload("res://Scenes/asteroid_spawner.tscn")
+const spawner_scene = preload("res://Scenes/Objects/asteroid_spawner.tscn")
 func _ready():
 	$DialogTimer.start()
 	pass
@@ -26,7 +26,6 @@ func _process(_delta):
 	if $EndDialog.current_index >= $EndDialog.length -1 and $EndDialog.visible:
 		$EndTutorialTimer.start() # end the Tutorial and move to store scene
 	if $EndDialog.current_index >= $EndDialog.length -1:
-		$Player.global_position -= Vector2(0,1)
 		pass 
 	
 func _on_dialog_timer_timeout():
@@ -48,5 +47,5 @@ func _on_level_timer_timeout():
 
 
 func _on_end_tutorial_timer_timeout():
-	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")#temporary redirect
+	get_tree().change_scene_to_file("res://Scenes/UI/main_menu.tscn")#temporary redirect
 	#here we will instantiate the store scene and queue_free this level

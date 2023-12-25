@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://h72nudxqydx6"]
+
+[ext_resource type="Texture2D" uid="uid://npyhvwy3qnqp" path="res://Assets/UI/Button.png" id="1_6k8et"]
+[ext_resource type="Texture2D" uid="uid://nf4j0aigd17v" path="res://Assets/UI/RepairBot.png" id="1_n4dlk"]
+[ext_resource type="Script" path="res://Scripts/Store Items/repair_bot.gd" id="1_ptmto"]
+[ext_resource type="Texture2D" uid="uid://bdjawwxn2pe1b" path="res://Assets/UI/ButtonHovered.png" id="2_8k5v7"]
+[ext_resource type="PackedScene" uid="uid://e3yl0t10qlw7" path="res://Scenes/UI/tool_tip.tscn" id="5_6gwqj"]
+[ext_resource type="PackedScene" uid="uid://ck8r420delabm" path="res://Scenes/Animations/coin.tscn" id="5_gj8xh"]
+
+[node name="RepairBot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ptmto")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 218.0
+offset_bottom = 53.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("1_6k8et")
+texture_pressed = ExtResource("2_8k5v7")
+texture_hover = ExtResource("2_8k5v7")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="TextureButton"]
+layout_mode = 0
+offset_right = 219.0
+offset_bottom = 55.0
+text = "Buy Repair Bot"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Coin" parent="." instance=ExtResource("5_gj8xh")]
+position = Vector2(214, 11)
+scale = Vector2(0.5, 0.5)
+
+[node name="ToolTip" parent="." instance=ExtResource("5_6gwqj")]
+visible = false
+anchors_preset = 0
+offset_left = -150.0
+offset_top = 15.0
+offset_right = -150.0
+offset_bottom = 15.0
+grow_horizontal = 1
+grow_vertical = 1
+item_image = ExtResource("1_n4dlk")
+tip = "Repair Bot: Instantly repair your hull"
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

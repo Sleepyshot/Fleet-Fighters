@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c80e2bwvtkiri"]
+[gd_scene load_steps=8 format=3 uid="uid://c80e2bwvtkiri"]
 
 [ext_resource type="Script" path="res://Scripts/Game/game.gd" id="1_1bhb1"]
-[ext_resource type="PackedScene" uid="uid://16nuafg1m5sq" path="res://Scenes/pause_menu.tscn" id="2_0hetj"]
+[ext_resource type="PackedScene" uid="uid://16nuafg1m5sq" path="res://Scenes/UI/pause_menu.tscn" id="2_0hetj"]
 [ext_resource type="Texture2D" uid="uid://blc8fhjf723nh" path="res://Assets/UI/Stars.png" id="2_hjawp"]
-[ext_resource type="PackedScene" uid="uid://bwxqkiox7q1u6" path="res://Scenes/hud.tscn" id="3_fails"]
-[ext_resource type="PackedScene" uid="uid://bl2gwxpmfr0ns" path="res://Scenes/Levels/tutorial_level.tscn" id="7_28mnl"]
+[ext_resource type="PackedScene" uid="uid://bwxqkiox7q1u6" path="res://Scenes/UI/hud.tscn" id="3_fails"]
+[ext_resource type="PackedScene" uid="uid://bl2gwxpmfr0ns" path="res://Scenes/Levels/tutorial_level.tscn" id="6_budmm"]
+[ext_resource type="PackedScene" uid="uid://bu8u55jruvkx" path="res://Scenes/Ships/player.tscn" id="6_lvyyn"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_13thi"]
 emission_shape = 3
@@ -62,6 +63,9 @@ visible = false
 wait_time = 0.1
 autostart = true
 
-[node name="TutorialLevel" parent="." instance=ExtResource("7_28mnl")]
+[node name="Player" parent="." instance=ExtResource("6_lvyyn")]
+position = Vector2(945, 746)
+
+[node name="TutorialLevel" parent="." instance=ExtResource("6_budmm")]
 
 [connection signal="timeout" from="EnergyTimer" to="." method="_on_energy_timer_timeout"]

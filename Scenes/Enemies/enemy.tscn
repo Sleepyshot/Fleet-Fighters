@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dhyipokj4nooc"]
 
-[ext_resource type="Texture2D" uid="uid://cd5phmo8hlxbc" path="res://Assets/Enemy1.png" id="1_orwr4"]
 [ext_resource type="Script" path="res://Scripts/EnemyAndComponents/enemy.gd" id="1_rtp3o"]
+[ext_resource type="Texture2D" uid="uid://cd5phmo8hlxbc" path="res://Assets/Ships/Enemy1.png" id="2_h752n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lccko"]
 size = Vector2(79, 53)
@@ -14,7 +14,7 @@ rank = 1
 
 [node name="Ship" type="Sprite2D" parent="."]
 rotation = 1.5708
-texture = ExtResource("1_orwr4")
+texture = ExtResource("2_h752n")
 
 [node name="Area2D" type="Area2D" parent="."]
 

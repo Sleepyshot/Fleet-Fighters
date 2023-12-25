@@ -4,7 +4,7 @@ extends Node2D
 @export var rank : int
 var current_pos
 var random_number = 0
-@onready var main = $"../../"
+
 
 func _process(_delta):
 	current_pos = position
@@ -30,7 +30,7 @@ func flash_red():
 	tween.tween_property($Ship, "modulate",Color.WHITE, .075)
 
 func move(current_position):
-	look_at(main.player_pos)
+	look_at(Global.player_pos)
 	position += Vector2(0, 80 * get_process_delta_time())
 	if position.y > 200:
 		position = current_position

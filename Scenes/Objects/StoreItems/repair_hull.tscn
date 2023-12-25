@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://drsyr3suybutv"]
+
+[ext_resource type="Script" path="res://Scripts/Store Items/repair_hull.gd" id="1_rqsyp"]
+[ext_resource type="Texture2D" uid="uid://npyhvwy3qnqp" path="res://Assets/UI/Button.png" id="2_6ftqp"]
+[ext_resource type="Texture2D" uid="uid://bdjawwxn2pe1b" path="res://Assets/UI/ButtonHovered.png" id="3_h82rv"]
+[ext_resource type="PackedScene" uid="uid://ck8r420delabm" path="res://Scenes/Animations/coin.tscn" id="5_johl0"]
+
+[node name="HullRepair" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 1.0
+offset_right = 168.0
+offset_bottom = 44.0
+script = ExtResource("1_rqsyp")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = -2.0
+offset_right = 221.0
+offset_bottom = 56.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("2_6ftqp")
+texture_pressed = ExtResource("2_6ftqp")
+texture_hover = ExtResource("3_h82rv")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="TextureButton"]
+layout_mode = 0
+offset_left = 13.3333
+offset_top = 8.0
+offset_right = 214.333
+offset_bottom = 50.0
+text = "Repair Hull"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Coin" parent="." instance=ExtResource("5_johl0")]
+position = Vector2(214, 11)
+scale = Vector2(0.5, 0.5)
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

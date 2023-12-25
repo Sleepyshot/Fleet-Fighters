@@ -1,10 +1,24 @@
-[gd_scene load_steps=10 format=3 uid="uid://bl2gwxpmfr0ns"]
+[gd_scene load_steps=9 format=3 uid="uid://bl2gwxpmfr0ns"]
 
-[ext_resource type="PackedScene" uid="uid://bu8u55jruvkx" path="res://Scenes/player.tscn" id="1_epdwa"]
 [ext_resource type="Script" path="res://Scripts/Game/tutorial_level.gd" id="1_lg03w"]
-[ext_resource type="PackedScene" uid="uid://dpy2mtsso5rg4" path="res://Scenes/dialog_box.tscn" id="3_3jrgx"]
+[ext_resource type="PackedScene" uid="uid://dpy2mtsso5rg4" path="res://Scenes/UI/dialog_box.tscn" id="3_3jrgx"]
 [ext_resource type="Texture2D" uid="uid://c55vyugtvcc4h" path="res://Assets/UI/TutorialCustomDialogBox.png" id="4_m5rd7"]
 [ext_resource type="Texture2D" uid="uid://bjdjlusyjuf70" path="res://Assets/UI/pointer.png" id="5_jyulm"]
+
+[sub_resource type="Animation" id="Animation_va4dy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_vycy7"]
 resource_name = "fade_in"
@@ -32,21 +46,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_va4dy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_bufr0"]
@@ -86,9 +85,6 @@ _data = {
 
 [node name="TutorialLevel" type="Node2D"]
 script = ExtResource("1_lg03w")
-
-[node name="Player" parent="." instance=ExtResource("1_epdwa")]
-position = Vector2(947, 849)
 
 [node name="DialogBox" parent="." instance=ExtResource("3_3jrgx")]
 offset_left = 2211.0

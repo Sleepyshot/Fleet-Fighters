@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://cwua7ffnkndp5"]
+
+[ext_resource type="Texture2D" uid="uid://npyhvwy3qnqp" path="res://Assets/UI/Button.png" id="1_6jckb"]
+[ext_resource type="Script" path="res://Scripts/Store Items/engine_booster.gd" id="1_6jyj7"]
+[ext_resource type="Texture2D" uid="uid://bdjawwxn2pe1b" path="res://Assets/UI/ButtonHovered.png" id="2_5ilbk"]
+[ext_resource type="PackedScene" uid="uid://ck8r420delabm" path="res://Scenes/Animations/coin.tscn" id="3_1djkp"]
+[ext_resource type="PackedScene" uid="uid://e3yl0t10qlw7" path="res://Scenes/UI/tool_tip.tscn" id="4_hnfp5"]
+[ext_resource type="Texture2D" uid="uid://dabjclors57lg" path="res://Assets/UI/EngineBooster.png" id="6_8ys7n"]
+
+[node name="EngineBooster" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6jyj7")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 211.0
+offset_bottom = 54.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("1_6jckb")
+texture_pressed = ExtResource("1_6jckb")
+texture_hover = ExtResource("2_5ilbk")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="TextureButton"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 208.0
+offset_bottom = 49.0
+text = "Buy Engine Booster"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Coin" parent="." instance=ExtResource("3_1djkp")]
+position = Vector2(208, 11)
+scale = Vector2(0.5, 0.5)
+
+[node name="ToolTip" parent="." instance=ExtResource("4_hnfp5")]
+visible = false
+anchors_preset = 0
+offset_left = -150.0
+offset_top = 20.0
+offset_right = -150.0
+offset_bottom = 20.0
+grow_horizontal = 1
+grow_vertical = 1
+item_image = ExtResource("6_8ys7n")
+tip = "Engine Booster: For 30 sec, increase Max Speed. 60 sec Cooldown"
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

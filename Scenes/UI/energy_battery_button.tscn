@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxe8gu183kgim"]
+
+[ext_resource type="Script" path="res://Scripts/UI/energy_battery_button.gd" id="1_ct8b8"]
+[ext_resource type="Texture2D" uid="uid://d3r761tq1hshb" path="res://Assets/UI/SolidPanelMenu.png" id="2_mj6t8"]
+[ext_resource type="Texture2D" uid="uid://djaa3g6hoplt8" path="res://Assets/UI/EnergyBattery.png" id="3_dq8xd"]
+
+[node name="EnergyBatteryButton" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ct8b8")
+
+[node name="SolidPanelMenu" type="Sprite2D" parent="."]
+position = Vector2(32, 47)
+scale = Vector2(0.05, 0.09)
+texture = ExtResource("2_mj6t8")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_right = 56.0
+offset_bottom = 80.0
+texture_normal = ExtResource("3_dq8xd")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Count" type="Label" parent="TextureButton"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 57.0
+offset_right = 63.0
+offset_bottom = 83.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Duration" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 88.0
+color = Color(0.376471, 0.376471, 0.376471, 0.839216)
+
+[node name="CDTimer" type="Label" parent="."]
+texture_filter = 1
+offset_right = 23.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0.721569, 0.670588, 0.184314, 1)
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]

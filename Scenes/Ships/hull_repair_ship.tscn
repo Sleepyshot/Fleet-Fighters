@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://5611qdbs0653"]
+
+[ext_resource type="Script" path="res://Scripts/Game/hull_repair_ship.gd" id="1_deuwt"]
+[ext_resource type="Texture2D" uid="uid://ctpvtm21vlcpd" path="res://Assets/Ships/HullRepairShip.png" id="2_ay6be"]
+[ext_resource type="Texture2D" uid="uid://7si3lf8hyium" path="res://Assets/UI/MenuPanel.png" id="3_m1odu"]
+[ext_resource type="PackedScene" uid="uid://h72nudxqydx6" path="res://Scenes/Objects/StoreItems/repair_bot.tscn" id="4_nwwip"]
+[ext_resource type="PackedScene" uid="uid://b6lj8nb4t2iav" path="res://Scenes/Objects/StoreItems/nano_reiforcement.tscn" id="6_jdhvc"]
+[ext_resource type="PackedScene" uid="uid://bgvh46sfl6x5v" path="res://Scenes/Objects/StoreItems/hull_recovery_module.tscn" id="7_8nvco"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jot1d"]
+radius = 249.002
+
+[node name="HullRepairShip" type="Node2D"]
+script = ExtResource("1_deuwt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_ay6be")
+
+[node name="ShopTrigger" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShopTrigger"]
+shape = SubResource("CircleShape2D_jot1d")
+
+[node name="PopupMenu" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1600, 350)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_m1odu")
+
+[node name="ShopName" type="Label" parent="PopupMenu"]
+offset_left = -123.0
+offset_top = -366.0
+offset_right = 107.0
+offset_bottom = -321.0
+theme_override_font_sizes/font_size = 30
+text = "Hull Repair Ship"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="RepairBot" parent="PopupMenu" instance=ExtResource("4_nwwip")]
+anchors_preset = -1
+anchor_left = 0.383
+anchor_top = 0.439
+anchor_right = 0.554
+anchor_bottom = 0.515
+offset_left = -942.027
+offset_top = -754.12
+offset_right = -1106.35
+offset_bottom = -795.2
+scale = Vector2(2, 2)
+
+[node name="NanoReiforcement" parent="PopupMenu" instance=ExtResource("6_jdhvc")]
+anchors_preset = -1
+anchor_left = 0.387
+anchor_top = 0.542
+anchor_right = 0.558
+anchor_bottom = 0.603
+offset_left = -944.374
+offset_top = -726.693
+offset_right = -1107.7
+offset_bottom = -759.573
+scale = Vector2(2, 2)
+
+[node name="HullRecoveryModule" parent="PopupMenu" instance=ExtResource("7_8nvco")]
+offset_left = -198.667
+offset_top = -10.666
+offset_right = -1958.67
+offset_bottom = -1058.67
+scale = Vector2(2, 2)
+
+[connection signal="area_entered" from="ShopTrigger" to="." method="_on_shop_trigger_area_entered"]
+[connection signal="area_exited" from="ShopTrigger" to="." method="_on_shop_trigger_area_exited"]

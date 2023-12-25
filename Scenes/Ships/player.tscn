@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://bu8u55jruvkx"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerAndComponents/player.gd" id="1_q3nf8"]
+[ext_resource type="PackedScene" uid="uid://ce7p8ib6odhr4" path="res://Scenes/Animations/thrusters.tscn" id="2_hbyrn"]
+[ext_resource type="Texture2D" uid="uid://cjv0aps2cb4kq" path="res://Assets/Ships/StarterShipBlue.png" id="3_nw6l5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fynnq"]
+size = Vector2(39, 24.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvjeh"]
+size = Vector2(53, 65)
+
+[node name="Player" type="CharacterBody2D"]
+texture_filter = 1
+script = ExtResource("1_q3nf8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 13.375)
+shape = SubResource("RectangleShape2D_fynnq")
+
+[node name="Thrusters" parent="." instance=ExtResource("2_hbyrn")]
+position = Vector2(0, 40)
+scale = Vector2(0.492188, 0.8125)
+
+[node name="Ship" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("3_nw6l5")
+
+[node name="Turret1" type="Node2D" parent="Ship"]
+position = Vector2(-2, 3)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 32.5)
+shape = SubResource("RectangleShape2D_yvjeh")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

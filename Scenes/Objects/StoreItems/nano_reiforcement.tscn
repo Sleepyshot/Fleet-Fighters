@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://b6lj8nb4t2iav"]
+
+[ext_resource type="Script" path="res://Scripts/Store Items/nano_reiforcement.gd" id="1_c0ej7"]
+[ext_resource type="Texture2D" uid="uid://npyhvwy3qnqp" path="res://Assets/UI/Button.png" id="1_sk1rl"]
+[ext_resource type="Texture2D" uid="uid://bdjawwxn2pe1b" path="res://Assets/UI/ButtonHovered.png" id="2_og50i"]
+[ext_resource type="PackedScene" uid="uid://ck8r420delabm" path="res://Scenes/Animations/coin.tscn" id="3_mbihj"]
+[ext_resource type="PackedScene" uid="uid://e3yl0t10qlw7" path="res://Scenes/UI/tool_tip.tscn" id="5_ixi64"]
+[ext_resource type="Texture2D" uid="uid://yd57sk3mm6fr" path="res://Assets/UI/NanoReinforcement.png" id="6_f28q4"]
+
+[node name="NanoReiforcement" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+offset_right = -1756.0
+offset_bottom = -1048.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c0ej7")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 213.0
+offset_bottom = 40.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("1_sk1rl")
+texture_pressed = ExtResource("1_sk1rl")
+texture_hover = ExtResource("2_og50i")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="TextureButton"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 208.0
+offset_bottom = 39.0
+text = "Buy Nano Module"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Coin" parent="." instance=ExtResource("3_mbihj")]
+position = Vector2(212, 7)
+scale = Vector2(0.5, 0.5)
+
+[node name="ToolTip" parent="." instance=ExtResource("5_ixi64")]
+visible = false
+anchors_preset = 0
+offset_left = -150.0
+offset_top = 15.0
+offset_right = -150.0
+offset_bottom = 15.0
+grow_horizontal = 1
+grow_vertical = 1
+item_image = ExtResource("6_f28q4")
+tip = "Nano Reinforcement Module: For 30 sec Increase max HP. 60 sec cooldown"
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

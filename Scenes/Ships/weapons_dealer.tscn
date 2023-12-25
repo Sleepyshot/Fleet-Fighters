@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqwe7ufg1mum6"]
+
+[ext_resource type="Texture2D" uid="uid://bka6gcvgewkfp" path="res://Assets/UI/WeaponsShop.png" id="1_durdq"]
+[ext_resource type="Script" path="res://Scripts/Game/weapons_dealer.gd" id="1_y2fvg"]
+[ext_resource type="Texture2D" uid="uid://7si3lf8hyium" path="res://Assets/UI/MenuPanel.png" id="2_4bdow"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k4cxs"]
+radius = 251.002
+
+[node name="WeaponsDealer" type="Node2D"]
+script = ExtResource("1_y2fvg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+rotation = 3.14159
+texture = ExtResource("1_durdq")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_k4cxs")
+
+[node name="PopupMenu" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-458, 400)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_4bdow")
+
+[node name="Label" type="Label" parent="PopupMenu"]
+offset_left = -157.333
+offset_top = -344.0
+offset_right = 165.667
+offset_bottom = -288.0
+theme_override_font_sizes/font_size = 30
+text = "Weapons Ship"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

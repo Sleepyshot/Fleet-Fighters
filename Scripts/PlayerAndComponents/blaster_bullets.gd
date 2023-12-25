@@ -1,8 +1,14 @@
 extends Node2D
-@export var bullet_speed = 600
+@export var energy_cost = 10
+@export var bullet_speed = 700
 var movement_vector : = Vector2(0,-1)
 const explosion_scene = preload("res://Scenes/Animations/explosion_1.tscn")
 
+func _enter_tree():
+	if Global.player_energy < energy_cost:
+		queue_free()
+	else:
+		Global.player_energy -= energy_cost
 	
 func _process(delta):
 		global_position += movement_vector.rotated(rotation) * bullet_speed * delta

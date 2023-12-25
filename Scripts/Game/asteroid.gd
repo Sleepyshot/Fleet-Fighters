@@ -5,8 +5,6 @@ var current_position
 var collision_damage := 10
 var amount_awarded := 50
 
-
-@onready var main = $"../../../"
 func _process(delta):
 	position += Vector2(0,asteroid_speed * delta)# move the asteroid down
 	current_position = position# set the current position to this position
@@ -14,7 +12,7 @@ func _process(delta):
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("Projectile"):
-		main.player_coins += amount_awarded
+		Global.player_coins += amount_awarded
 		
 	var explode = destroy_animation.instantiate()
 	explode.position = current_position# set position to the coordinates of the asteroid when it entered the area2d

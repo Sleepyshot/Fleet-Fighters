@@ -1,7 +1,7 @@
 extends Node2D
 
-const asteroid_scene = preload("res://Scenes/asteroid.tscn")
-const star_scene = preload("res://Scenes/Animations/shooting_star.tscn")
+const asteroid_scene = preload("res://Scenes/Objects/asteroid.tscn")
+
 var start_postition
 
 func _ready():

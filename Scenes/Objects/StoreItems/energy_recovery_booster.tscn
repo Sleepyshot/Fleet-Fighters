@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://blkm22lq1oegx"]
+
+[ext_resource type="Script" path="res://Scripts/Store Items/energy_recovery_booster.gd" id="1_tygg0"]
+[ext_resource type="Texture2D" uid="uid://npyhvwy3qnqp" path="res://Assets/UI/Button.png" id="2_ivb0b"]
+[ext_resource type="Texture2D" uid="uid://bdjawwxn2pe1b" path="res://Assets/UI/ButtonHovered.png" id="3_y0uyk"]
+[ext_resource type="PackedScene" uid="uid://ck8r420delabm" path="res://Scenes/Animations/coin.tscn" id="4_d35ig"]
+[ext_resource type="PackedScene" uid="uid://e3yl0t10qlw7" path="res://Scenes/UI/tool_tip.tscn" id="5_j0jui"]
+[ext_resource type="Texture2D" uid="uid://cn1ck2lkocaa" path="res://Assets/UI/EnergyRecovery.png" id="6_6jofh"]
+
+[node name="EnergyRecoveryBooster" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tygg0")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 216.0
+offset_bottom = 50.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("2_ivb0b")
+texture_pressed = ExtResource("2_ivb0b")
+texture_hover = ExtResource("3_y0uyk")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="TextureButton"]
+layout_mode = 0
+offset_right = 210.0
+offset_bottom = 50.0
+text = "Buy Energy Recovery"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Coin" parent="." instance=ExtResource("4_d35ig")]
+position = Vector2(208, 9)
+scale = Vector2(0.5, 0.5)
+
+[node name="ToolTip" parent="." instance=ExtResource("5_j0jui")]
+visible = false
+anchors_preset = 0
+offset_left = -150.0
+offset_top = 20.0
+offset_right = -150.0
+offset_bottom = 20.0
+item_image = ExtResource("6_6jofh")
+tip = "Energy Recovery Booster: Double energy recovery rate for 30 sec. 60 sec Cooldown"
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

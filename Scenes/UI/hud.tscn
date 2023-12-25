@@ -1,0 +1,126 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwxqkiox7q1u6"]
+
+[ext_resource type="Texture2D" uid="uid://c78d80wyibdmh" path="res://Assets/UI/CastBarEmpty.png" id="1_448x2"]
+[ext_resource type="PackedScene" uid="uid://ck8r420delabm" path="res://Scenes/Animations/coin.tscn" id="3_i6j22"]
+[ext_resource type="Texture2D" uid="uid://cfp23kmoxg61u" path="res://Assets/UI/EXPBar.png" id="4_ehl4f"]
+
+[node name="HUD" type="Control"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CastBar" type="Sprite2D" parent="."]
+position = Vector2(1316, 1030)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("1_448x2")
+
+[node name="MinEnergy" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1141.0
+offset_top = 1016.0
+offset_right = 1153.0
+offset_bottom = 1042.0
+text = "0"
+vertical_alignment = 1
+
+[node name="MaxEnergy" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1450.0
+offset_top = 1014.0
+offset_right = 1490.0
+offset_bottom = 1044.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CastProgress" type="ProgressBar" parent="."]
+modulate = Color(0.152941, 0.807843, 0.901961, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 28.0986
+anchor_top = 1.69393
+anchor_right = 29.6487
+anchor_bottom = 1.69393
+offset_left = 17.0542
+offset_top = 948.243
+offset_right = 304.054
+offset_bottom = 975.243
+step = 0.1
+value = 100.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="HPBar" type="Sprite2D" parent="."]
+position = Vector2(596, 1029)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("1_448x2")
+
+[node name="HealthProgress" type="ProgressBar" parent="."]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 421.0
+offset_top = 1015.0
+offset_right = 770.0
+offset_bottom = 1042.0
+theme_override_colors/font_color = Color(0.988235, 0.988235, 0.988235, 1)
+show_percentage = false
+
+[node name="MinHP" type="Label" parent="HealthProgress"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 16.0
+offset_bottom = 27.0
+text = "0"
+vertical_alignment = 1
+
+[node name="MaxHP" type="Label" parent="HealthProgress"]
+layout_mode = 0
+offset_left = 309.0
+offset_top = 1.0
+offset_right = 349.0
+offset_bottom = 25.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExpBar" type="Sprite2D" parent="."]
+position = Vector2(967, 1042)
+texture = ExtResource("4_ehl4f")
+
+[node name="ExpProgress" type="ProgressBar" parent="."]
+self_modulate = Color(1, 0, 1, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.280729
+anchor_right = 0.275521
+offset_left = 430.229
+offset_top = 1059.0
+offset_right = 434.229
+offset_bottom = 1086.0
+scale = Vector2(1, 0.25)
+value = 75.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Coin" parent="." instance=ExtResource("3_i6j22")]
+position = Vector2(961, 1013)
+
+[node name="RepairButtonHolder" type="Node2D" parent="."]
+position = Vector2(60, 986)
+
+[node name="ReinforcementButtonHolder" type="Node2D" parent="."]
+position = Vector2(144, 985)
+
+[node name="RecoveryButtonHolder" type="Node2D" parent="."]
+position = Vector2(234, 985)
+
+[node name="BatteryButtonHolder" type="Node2D" parent="."]
+position = Vector2(1620, 988)
+
+[node name="EngineButtonHolder" type="Node2D" parent="."]
+position = Vector2(1745, 1026)
+
+[node name="EnergyRecoverButtonHolder" type="Node2D" parent="."]
+position = Vector2(1833, 1026)

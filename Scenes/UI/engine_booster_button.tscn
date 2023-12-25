@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnnifp6w08win"]
+
+[ext_resource type="Texture2D" uid="uid://d3r761tq1hshb" path="res://Assets/UI/SolidPanelMenu.png" id="1_nwv3k"]
+[ext_resource type="Script" path="res://Scripts/UI/engine_booster_button.gd" id="1_og2jg"]
+[ext_resource type="Texture2D" uid="uid://dabjclors57lg" path="res://Assets/UI/EngineBooster.png" id="3_j1cv7"]
+
+[node name="EngineBoosterButton" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_og2jg")
+
+[node name="SolidPanelMenu" type="Sprite2D" parent="."]
+position = Vector2(-5, 9)
+scale = Vector2(0.05, 0.09)
+texture = ExtResource("1_nwv3k")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 24.0
+texture_normal = ExtResource("3_j1cv7")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Count" type="Label" parent="TextureButton"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 37.0
+offset_right = 51.0
+offset_bottom = 63.0
+text = "0"
+horizontal_alignment = 1
+
+[node name="Duration" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -37.0
+offset_top = -38.0
+offset_right = 29.0
+offset_bottom = 50.0
+color = Color(0.376471, 0.376471, 0.376471, 0.839216)
+
+[node name="CDTimer" type="Label" parent="."]
+layout_mode = 0
+offset_left = -36.0
+offset_top = -37.0
+offset_right = -14.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(0.72092, 0.671676, 0.183624, 1)
+text = "0"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]

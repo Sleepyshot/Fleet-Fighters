@@ -1,7 +1,7 @@
 extends Control
 @export var file_name : String
 var current_index := 0
-@onready var main = $"../../"
+
 var json_as_dict
 var length
 func _ready():
@@ -18,5 +18,5 @@ func _process(_delta):
 		if Input.is_action_just_pressed("ui_accept") and current_index < length - 1:
 			current_index += 1		
 		elif Input.is_action_just_pressed("ui_accept") and current_index == length - 1:
-			main.is_paused = false
+			Global.is_paused = false
 			self.hide()

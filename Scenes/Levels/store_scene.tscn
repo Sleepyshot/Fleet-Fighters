@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://djn3sjhq7mqtw"]
+
+[ext_resource type="PackedScene" uid="uid://5611qdbs0653" path="res://Scenes/Ships/hull_repair_ship.tscn" id="1_5w412"]
+[ext_resource type="Script" path="res://Scripts/Levels/store_scene.gd" id="1_kc2n0"]
+[ext_resource type="PackedScene" uid="uid://cxn7kipkoyai7" path="res://Scenes/Ships/energy_lab.tscn" id="3_t6087"]
+[ext_resource type="PackedScene" uid="uid://dqwe7ufg1mum6" path="res://Scenes/Ships/weapons_dealer.tscn" id="4_xl76s"]
+[ext_resource type="PackedScene" uid="uid://cmra6proaiyde" path="res://Scenes/Ships/job_orbiter.tscn" id="5_hh6j6"]
+
+[node name="Store_scene" type="Node2D"]
+script = ExtResource("1_kc2n0")
+
+[node name="EnergyLab" parent="." instance=ExtResource("3_t6087")]
+position = Vector2(600, 486)
+
+[node name="HullRepairShip" parent="." instance=ExtResource("1_5w412")]
+position = Vector2(182, 169)
+
+[node name="WeaponsDealer" parent="." instance=ExtResource("4_xl76s")]
+position = Vector2(1037, 157)
+
+[node name="JobOrbiter" parent="." instance=ExtResource("5_hh6j6")]
+position = Vector2(1787, 132)

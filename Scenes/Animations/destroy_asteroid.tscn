@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dgtlrne5tynxs"]
 
-[ext_resource type="Texture2D" uid="uid://dojm5h6oop3j2" path="res://Assets/Asteroid 01 - Explode.png" id="1_qp4go"]
+[ext_resource type="Texture2D" uid="uid://dojm5h6oop3j2" path="res://Assets/Objects/Asteroid 01 - Explode.png" id="1_qp4go"]
 [ext_resource type="Script" path="res://Scripts/AnimationScripts/destroy_asteroid.gd" id="2_cgjsy"]
 
 [sub_resource type="Animation" id="Animation_rkg7a"]
